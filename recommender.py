@@ -12,7 +12,7 @@ class FilmOneriSistemi:
         Veri setini okur ve temizler.
         """
         if not os.path.exists(self.dosya_yolu):
-            print(f"\n❌ HATA: Dosya bulunamadı!")
+            print(f"\n HATA: Dosya bulunamadı!")
             print(f"Kontrol edilen yol: {os.path.abspath(self.dosya_yolu)}")
             print("Lütfen 'movies' klasörünün ve 'movies.csv' dosyasının doğru yerde olduğundan emin olun.")
             sys.exit()
@@ -32,15 +32,15 @@ class FilmOneriSistemi:
             
             return df
         except Exception as e:
-            print(f"\n❌ Veri okunurken kritik hata oluştu: {e}")
+            print(f"\n Veri okunurken kritik hata oluştu: {e}")
             sys.exit()
 
     def listele(self, sonuclar):
         if sonuclar.empty:
-            print("\n⚠️  Kriterlere uygun film/dizi bulunamadı.")
+            print("\n  Kriterlere uygun film/dizi bulunamadı.")
         else:
             sayi = len(sonuclar)
-            print(f"\n✅ {sayi} içerik bulundu. İşte en iyiler:\n")
+            print(f"\n {sayi} içerik bulundu. İşte en iyiler:\n")
             
             
             gosterim = sonuclar[['Başlık', 'Puan', 'Yıl', 'Tip', 'Türler']].head(10)
@@ -57,7 +57,7 @@ class FilmOneriSistemi:
             sonuc = self.df[self.df['Puan'] >= min_puan].sort_values(by='Puan', ascending=False)
             self.listele(sonuc)
         except ValueError:
-            print("❗ Lütfen geçerli bir sayı giriniz.")
+            print(" Lütfen geçerli bir sayı giriniz.")
 
     def yil_ile_ara(self):
         try:
@@ -65,7 +65,7 @@ class FilmOneriSistemi:
             sonuc = self.df[self.df['Yıl'] == yil]
             self.listele(sonuc)
         except ValueError:
-            print("❗ Lütfen geçerli bir yıl giriniz.")
+            print(" Lütfen geçerli bir yıl giriniz.")
 
     def kategori_ile_ara(self):
         kategori = input("Hangi türü arıyorsunuz? (Dram, Bilim Kurgu, Suç vb.): ").strip()
@@ -88,10 +88,10 @@ class FilmOneriSistemi:
         bulunanlar = self.df[self.df['Başlık'].str.lower().isin(kullanici_listesi)]
         
         if bulunanlar.empty:
-            print("\n⚠️ Yazdığınız filmler veri setinde bulunamadı. İsimleri doğru yazdığınızdan emin olun.")
+            print("\n Yazdığınız filmler veri setinde bulunamadı. İsimleri doğru yazdığınızdan emin olun.")
             return
 
-        print(f"\n📋 Veritabanında eşleşenler: {', '.join(bulunanlar['Başlık'].values)}")
+        print(f"\n Veritabanında eşleşenler: {', '.join(bulunanlar['Başlık'].values)}")
 
         
         tum_turler = []
@@ -108,8 +108,8 @@ class FilmOneriSistemi:
         from collections import Counter
         en_cok_izlenen_tur = Counter(tum_turler).most_common(1)[0][0]
         
-        print(f"\n💡 Analiz: **{en_cok_izlenen_tur}** türünü sevdiğinizi fark ettik.")
-        print(f"🎬 Sizin için {en_cok_izlenen_tur} türünde seçtiğimiz öneriler:")
+        print(f"\n Analiz: **{en_cok_izlenen_tur}** türünü sevdiğinizi fark ettik.")
+        print(f" Sizin için {en_cok_izlenen_tur} türünde seçtiğimiz öneriler:")
 
        
         oneriler = self.df[
@@ -155,4 +155,5 @@ if __name__ == "__main__":
     csv_yolu = os.path.join(program_dizini, "movies.csv")
     
     app = FilmOneriSistemi(csv_yolu)
+
     app.calistir()
