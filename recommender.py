@@ -8,9 +8,6 @@ class FilmOneriSistemi:
         self.df = self.veri_yukle()
 
     def veri_yukle(self):
-        """
-        Veri setini okur ve temizler.
-        """
         if not os.path.exists(self.dosya_yolu):
             print(f"\n HATA: Dosya bulunamadı!")
             print(f"Kontrol edilen yol: {os.path.abspath(self.dosya_yolu)}")
@@ -157,3 +154,4 @@ if __name__ == "__main__":
     app = FilmOneriSistemi(csv_yolu)
 
     app.calistir()
+
