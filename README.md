@@ -1,3 +1,2 @@
-# movie-recommender-python
-"Python ve Pandas kullanarak film önerisi yapan proje"
-Kullanıcının izleme geçmişini analiz eder veya belirli kriterlere (Puan, Yıl, Tür) göre filtreleme yaparak öneriler sunar.
+A project that makes movie recommendations using Python and Pandas.
+It analyzes the user's viewing history or provides recommendations by filtering according to specific criteria (Rating, Year, Genre).
